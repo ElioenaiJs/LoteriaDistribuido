@@ -4,10 +4,12 @@
  */
 package model;
 
+import java.util.Map;
+
 /**
  *
  * @author elioenai
  */
 public class Table {
-    
+    private Map<String,Card> table;
 }
