@@ -4,10 +4,20 @@
  */
 package service;
 
+import model.Deck;
+
 /**
  *
- * @author elioenai
+ * @author froste
  */
-public class test {
+public class DeckService {
+    
+    private Deck deck;
+
+    public DeckService(Deck deck) {
+        this.deck = deck;
+    }
+    
+    
     
 }
