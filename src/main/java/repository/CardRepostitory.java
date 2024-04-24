@@ -22,8 +22,34 @@ public class CardRepostitory {
         this.images = new ArrayList<>();
 
         //se agregan las imagenes a la listas
+        this.images.add("/resources/images/1 gallo.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
+        this.images.add("/resources/images/54 la rana.jpg");
         this.images.add("/resources/images/54 la rana.jpg");
         this.images.add("/resources/images/image-removebg-preview.png");
+        
         
     }
     
