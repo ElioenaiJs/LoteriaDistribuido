@@ -100,7 +100,7 @@ public class DeckView extends javax.swing.JFrame {
                 .addComponent(deckContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(btnNext)
-                .addGap(0, 411, Short.MAX_VALUE))
+                .addGap(0, 447, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

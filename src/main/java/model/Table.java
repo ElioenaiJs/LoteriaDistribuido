@@ -1,15 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author elioenai
- */
 public class Table {
-    private Map<String,Card> table;
+
+    private Map<Integer, Card> table;
+
+    public Table() {
+        // Crear una tabla vacía
+        table = new HashMap<>();
+    }
+    
+     public void setupTable(Deck deck) {
+        deck.shuffle(); // Barajar las cartas en el mazo
+
+        // Sacar 16 cartas del mazo y colocarlas en la tabla
+        for (int i = 0; i < 16; i++) {
+            Card card = deck.getCards().pop(); // Sacar una carta del mazo
+            table.put(card.getNumber(), card); // Colocar la carta en la tabla en la posición i
+        }
+    }
+    
+    // Método para obtener la tabla
+    public Map<Integer, Card> getTable() {
+        return table;
+    }
+
+    // Otros métodos de la clase Table
 }
