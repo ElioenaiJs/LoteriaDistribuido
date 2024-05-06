@@ -1,6 +1,7 @@
 package view;
 
 import controller.DeckController;
+import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JOptionPane;
@@ -23,7 +24,22 @@ public class DeckView extends javax.swing.JFrame {
         deckController = new DeckController();
         initComponents();
         initDeck();
+        addTables();
     }
+    
+    private void addTables() {
+    // Crear instancias de TableView
+    TableView tableView1 = new TableView();
+    TableView tableView2 = new TableView();
+
+    // Establecer un layout para el contenedor de tablas
+    tablesContainer.setLayout(new GridLayout(1, 2)); // Por ejemplo, GridLayout de 1 fila y 2 columnas
+
+    // Agregar las instancias de TableView al contenedor
+    tablesContainer.add(tableView1);
+    tablesContainer.add(tableView2);
+}
+
 
     public void initDeck() {
         // Barajar las cartas al inicio del programa
@@ -62,15 +78,18 @@ public class DeckView extends javax.swing.JFrame {
         deckContainer = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cards = new javax.swing.JButton();
+        tablesContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         deckContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/54 la rana.jpg"))); // NOI18N
         deckContainer.setMaximumSize(new java.awt.Dimension(300, 700));
         deckContainer.setMinimumSize(new java.awt.Dimension(300, 700));
         deckContainer.setPreferredSize(new java.awt.Dimension(300, 700));
+        jPanel1.add(deckContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 6, 165, 214));
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +97,7 @@ public class DeckView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 95, -1, -1));
 
         cards.setText("Siguiente");
         cards.addActionListener(new java.awt.event.ActionListener() {
@@ -85,31 +105,10 @@ public class DeckView extends javax.swing.JFrame {
                 cardsActionPerformed(evt);
             }
         });
+        jPanel1.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 18, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cards)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(deckContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(deckContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(cards))
-                .addGap(0, 186, Short.MAX_VALUE))
-        );
+        tablesContainer.setLayout(new java.awt.GridBagLayout());
+        jPanel1.add(tablesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 680, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +120,7 @@ public class DeckView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
         );
 
         pack();
@@ -156,5 +155,6 @@ public class DeckView extends javax.swing.JFrame {
     private javax.swing.JLabel deckContainer;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel tablesContainer;
     // End of variables declaration//GEN-END:variables
 }

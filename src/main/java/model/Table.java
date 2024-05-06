@@ -19,6 +19,7 @@ public class Table {
         for (int i = 0; i < 16; i++) {
             Card card = deck.getCards().pop(); // Sacar una carta del mazo
             table.put(card.getNumber(), card); // Colocar la carta en la tabla en la posición i
+            System.out.println(i);
         }
     }
     
