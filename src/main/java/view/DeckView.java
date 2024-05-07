@@ -108,19 +108,19 @@ public class DeckView extends javax.swing.JFrame {
         jPanel1.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 18, -1, -1));
 
         tablesContainer.setLayout(new java.awt.GridBagLayout());
-        jPanel1.add(tablesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 680, 350));
+        jPanel1.add(tablesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 680, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
 
         pack();
