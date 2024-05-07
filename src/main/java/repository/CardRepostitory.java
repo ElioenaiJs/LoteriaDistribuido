@@ -83,7 +83,7 @@ public class CardRepostitory {
                 "No te arrugues cuero viejo que te quiero pa’ tambor", "El tambor", 29, Boolean.FALSE));
         this.images.add(new Card("/resources/images/30 el camaron.jpg",
                 "Camarón que se duerme, se lo lleva la corriente", "El camaron", 30, Boolean.FALSE));
-        this.images.add(new Card("/resources/images/31 el las jaras.jpg",
+        this.images.add(new Card("/resources/images/31 las jaras.jpg",
                 "Las jaras del indio Adán, donde pegan, dan", "Las jaras", 31, Boolean.FALSE));
         this.images.add(new Card("/resources/images/32 el musico.jpg",
                 "El músico trompa de hule, ya no me quiere tocar", "El musico", 32, Boolean.FALSE));
