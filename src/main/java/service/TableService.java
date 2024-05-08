@@ -38,7 +38,7 @@ public class TableService {
             // Disable the card by setting its state to false
             tableCard.setState(false);
             
-            tableCard.setImage("");
+            tableCard.setImage("/resources/images/frijol.jpg");
 
             // Update the card in the table
             tableCards.put(tableCard.getNumber(), tableCard);
