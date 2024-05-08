@@ -49,10 +49,10 @@ public class TableView extends javax.swing.JPanel {
             jLabel9, jLabel10, jLabel11, jLabel12,
             jLabel13, jLabel14, jLabel15, jLabel16
         };
-        
+
         // Crear una instancia de Deck
         Deck deck = deckService.getDeck();
-        
+
         // Configurar la tabla pasando el mazo barajado como argumento
         table.setupTable(deck);
 
@@ -107,8 +107,8 @@ public class TableView extends javax.swing.JPanel {
         if (hasCard) {
             tableController.disableCard(this.table, card);
             this.repaintTable();
-            
-            return tableController.isWinner(this.table);
+
+            return true;
         }
 
         return false;
@@ -124,6 +124,11 @@ public class TableView extends javax.swing.JPanel {
         int width = 55;  // Ancho del contenedor
         int height = 95; // Altura del contenedor
         return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+    }
+
+    //comprueba si el jugador ha ganado
+    public boolean isWinner() {
+        return this.tableController.isWinner(this.table);
     }
 
     /**

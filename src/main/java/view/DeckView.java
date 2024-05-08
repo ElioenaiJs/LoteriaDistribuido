@@ -31,6 +31,7 @@ public class DeckView extends javax.swing.JFrame {
         tableView1 = new TableView();
         tableView2 = new TableView();
         initComponents();
+        initButton();
         initDeck();
         addTables();
     }
@@ -63,9 +64,8 @@ public class DeckView extends javax.swing.JFrame {
         Image scaledImage = loadImage(imagePath);
         // Establecer la imagen escalada como icono del contenedor
         deckContainer.setIcon(new ImageIcon(scaledImage));
+        phrase.setText(card.getPhrase());
 
-        tableView1.hasCard(card);
-        tableView2.hasCard(card);
     }
 
     public Image loadImage(String imagePath) {
@@ -85,19 +85,20 @@ public class DeckView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         deckContainer = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cards = new javax.swing.JButton();
         tablesContainer = new javax.swing.JPanel();
+        phrase = new javax.swing.JLabel();
+        btnNext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         deckContainer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/54 la rana.jpg"))); // NOI18N
         deckContainer.setMaximumSize(new java.awt.Dimension(300, 700));
         deckContainer.setMinimumSize(new java.awt.Dimension(300, 700));
         deckContainer.setPreferredSize(new java.awt.Dimension(300, 700));
-        jPanel1.add(deckContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 6, 165, 214));
+        jPanel1.add(deckContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 150, 170));
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,18 +106,21 @@ public class DeckView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 95, -1, -1));
-
-        cards.setText("Siguiente");
-        cards.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardsActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 18, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, -1));
 
         tablesContainer.setLayout(new java.awt.GridBagLayout());
-        jPanel1.add(tablesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 680, 450));
+        jPanel1.add(tablesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 630, 450));
+
+        phrase.setForeground(new java.awt.Color(255, 255, 255));
+        phrase.setText("frase");
+        jPanel1.add(phrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNextMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 60, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +143,7 @@ public class DeckView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardsActionPerformed
+    private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
         if (currentIndex < shuffledCards.size() - 1) {
             currentIndex++;
             showNextCard();
@@ -147,7 +151,31 @@ public class DeckView extends javax.swing.JFrame {
             // Mostrar un mensaje si se han mostrado todas las cartas
             JOptionPane.showMessageDialog(this, "¡Se han mostrado todas las cartas!");
         }
-    }//GEN-LAST:event_cardsActionPerformed
+        
+        //comprobaciones con la carta actual
+         Card card = shuffledCards.get(currentIndex);
+         
+        //comprobar si las tablas tiene la carta
+        if (tableView1.hasCard(card)) {
+            new JOptionPane().showMessageDialog(rootPane, "El jugador 1 tiene la carta");
+        }
+
+        if (tableView2.hasCard(card)) {
+            new JOptionPane().showMessageDialog(rootPane, "El jugador 2 tiene la carta");
+        }
+
+        /**
+         * se comprueba si hay un ganador
+         *
+         */
+        if (tableView2.isWinner()) {
+            new JOptionPane().showMessageDialog(rootPane, "El jugador 2 ha ganado");
+        }
+
+        if (tableView1.isWinner()) {
+            new JOptionPane().showMessageDialog(rootPane, "El jugador 1 ha ganado");
+        }
+    }//GEN-LAST:event_btnNextMouseClicked
 
     public static void main(String args[]) {
 
@@ -159,10 +187,25 @@ public class DeckView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cards;
+    private javax.swing.JLabel btnNext;
     private javax.swing.JLabel deckContainer;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel phrase;
     private javax.swing.JPanel tablesContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void initButton() {
+         String imagePath = "/resources/images/next.png";
+        // Cargar la imagen
+        ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+        Image image = icon.getImage();
+
+        // Escalar la imagen
+        int width = deckContainer.getWidth();  // Ancho del contenedor
+        int height = deckContainer.getHeight(); // Altura del contenedor
+        Image scaledImage = image.getScaledInstance(45, 45, Image.SCALE_SMOOTH);
+        // Establecer la imagen escalada como icono del contenedor
+        btnNext.setIcon(new ImageIcon(scaledImage));
+    }
 }
