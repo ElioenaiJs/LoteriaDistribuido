@@ -53,7 +53,11 @@ public class DeckView extends javax.swing.JFrame {
         // Mostrar la primera carta
         if (!shuffledCards.isEmpty()) {
             showNextCard();
+            Card card = shuffledCards.get(currentIndex);
+            currentIndex++;
+
         }
+
     }
 
     private void showNextCard() {
@@ -145,35 +149,34 @@ public class DeckView extends javax.swing.JFrame {
 
     private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
         if (currentIndex < shuffledCards.size() - 1) {
+            // Obtener la carta actual
+            Card card = shuffledCards.get(currentIndex);
+
+            // Comprobar si las tablas tienen la carta actual
+            if (tableView1.hasCard(card)) {
+                new JOptionPane().showMessageDialog(rootPane, "El jugador 1 tiene la carta");
+            }
+
+            if (tableView2.hasCard(card)) {
+                new JOptionPane().showMessageDialog(rootPane, "El jugador 2 tiene la carta");
+            }
+
+            // Comprobar si hay un ganador
+            if (tableView2.isWinner()) {
+                new JOptionPane().showMessageDialog(rootPane, "El jugador 2 ha ganado");
+            }
+
+            if (tableView1.isWinner()) {
+                new JOptionPane().showMessageDialog(rootPane, "El jugador 1 ha ganado");
+            }
+
+            // Incrementar el índice solo si hay más cartas en el mazo
             currentIndex++;
+            // Mostrar la siguiente carta
             showNextCard();
         } else {
             // Mostrar un mensaje si se han mostrado todas las cartas
             JOptionPane.showMessageDialog(this, "¡Se han mostrado todas las cartas!");
-        }
-        
-        //comprobaciones con la carta actual
-         Card card = shuffledCards.get(currentIndex);
-         
-        //comprobar si las tablas tiene la carta
-        if (tableView1.hasCard(card)) {
-            new JOptionPane().showMessageDialog(rootPane, "El jugador 1 tiene la carta");
-        }
-
-        if (tableView2.hasCard(card)) {
-            new JOptionPane().showMessageDialog(rootPane, "El jugador 2 tiene la carta");
-        }
-
-        /**
-         * se comprueba si hay un ganador
-         *
-         */
-        if (tableView2.isWinner()) {
-            new JOptionPane().showMessageDialog(rootPane, "El jugador 2 ha ganado");
-        }
-
-        if (tableView1.isWinner()) {
-            new JOptionPane().showMessageDialog(rootPane, "El jugador 1 ha ganado");
         }
     }//GEN-LAST:event_btnNextMouseClicked
 
@@ -196,7 +199,7 @@ public class DeckView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initButton() {
-         String imagePath = "/resources/images/next.png";
+        String imagePath = "/resources/images/next.png";
         // Cargar la imagen
         ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
         Image image = icon.getImage();
