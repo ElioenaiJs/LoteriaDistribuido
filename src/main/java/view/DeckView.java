@@ -1,6 +1,7 @@
 package view;
 
 import controller.DeckController;
+import controller.TableController;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import java.awt.Image;
@@ -16,30 +17,33 @@ public class DeckView extends javax.swing.JFrame {
     private DeckController deckController;
     private List<Card> shuffledCards;
     private int currentIndex = 0; // Nuevo índice para llevar el seguimiento de la carta actual
+    private final TableController tableController;
+    private TableView tableView1;
+    private TableView tableView2;
 
     /**
      * Creates new form Deck
      */
     public DeckView() {
         deckController = new DeckController();
+        tableController = new TableController();
+        // Crear instancias de TableView
+        tableView1 = new TableView();
+        tableView2 = new TableView();
         initComponents();
         initDeck();
         addTables();
     }
-    
+
     private void addTables() {
-    // Crear instancias de TableView
-    TableView tableView1 = new TableView();
-    TableView tableView2 = new TableView();
 
-    // Establecer un layout para el contenedor de tablas
-    tablesContainer.setLayout(new GridLayout(1, 2)); // Por ejemplo, GridLayout de 1 fila y 2 columnas
+        // Establecer un layout para el contenedor de tablas
+        tablesContainer.setLayout(new GridLayout(1, 2)); // Por ejemplo, GridLayout de 1 fila y 2 columnas
 
-    // Agregar las instancias de TableView al contenedor
-    tablesContainer.add(tableView1);
-    tablesContainer.add(tableView2);
-}
-
+        // Agregar las instancias de TableView al contenedor
+        tablesContainer.add(tableView1);
+        tablesContainer.add(tableView2);
+    }
 
     public void initDeck() {
         // Barajar las cartas al inicio del programa
@@ -53,11 +57,15 @@ public class DeckView extends javax.swing.JFrame {
 
     private void showNextCard() {
         // Obtener la imagen de la carta actual
-        String imagePath = shuffledCards.get(currentIndex).getImage();
+        Card card = shuffledCards.get(currentIndex);
+        String imagePath = card.getImage();
         // Cargar la imagen
         Image scaledImage = loadImage(imagePath);
         // Establecer la imagen escalada como icono del contenedor
         deckContainer.setIcon(new ImageIcon(scaledImage));
+
+        tableView1.hasCard(card);
+        tableView2.hasCard(card);
     }
 
     public Image loadImage(String imagePath) {

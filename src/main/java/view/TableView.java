@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package view;
 
+import controller.TableController;
 import java.awt.Image;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import model.Card;
 import model.Deck;
 import model.Table;
@@ -17,17 +16,32 @@ import service.DeckService;
  *
  * @author froste
  */
+@AllArgsConstructor
 public class TableView extends javax.swing.JPanel {
+
+    /**
+     * varibles
+     */
+    private TableController tableController;
+    private Table table;
+    private DeckService deckService;
 
     /**
      * Creates new form TableView
      */
     public TableView() {
+
+        //se crea un table
+        deckService = new DeckService();
+
+        this.table = new Table();
+        this.tableController = new TableController();
+
         initComponents();
         initTable();
     }
-    
-      public void initTable() {
+
+    public void initTable() {
         //cards container
         JLabel[] cardLabels = new JLabel[]{
             jLabel1, jLabel2, jLabel3, jLabel4,
@@ -35,34 +49,75 @@ public class TableView extends javax.swing.JPanel {
             jLabel9, jLabel10, jLabel11, jLabel12,
             jLabel13, jLabel14, jLabel15, jLabel16
         };
-          
-          
-        //se crea un table
-         DeckService deckService = new DeckService();
+        
         // Crear una instancia de Deck
         Deck deck = deckService.getDeck();
         
-        Table table = new Table();
-
         // Configurar la tabla pasando el mazo barajado como argumento
         table.setupTable(deck);
-        
-          Map<Integer, Card> cardMap = table.getTable();
+
+        Map<Integer, Card> cardMap = table.getTable();
         int i = 0;
+
+        System.out.println("map size: " + cardMap.size());
+
         // Iterar sobre las cartas y asignar las imágenes a los JLabel correspondientes
         for (Map.Entry<Integer, Card> entry : cardMap.entrySet()) {
             Card card = entry.getValue();
             String imagePath = card.getImage();
             System.out.println(imagePath);
-            
+
             Image icon = loadImage(imagePath);
             cardLabels[i].setIcon(new ImageIcon(icon));
             i++;
         }
     }
 
+    private void repaintTable() {
+
+        //cards container
+        JLabel[] cardLabels = new JLabel[]{
+            jLabel1, jLabel2, jLabel3, jLabel4,
+            jLabel5, jLabel6, jLabel7, jLabel8,
+            jLabel9, jLabel10, jLabel11, jLabel12,
+            jLabel13, jLabel14, jLabel15, jLabel16
+        };
+
+        Map<Integer, Card> cardMap = table.getTable();
+        int i = 0;
+
+        System.out.println("map size: " + cardMap.size());
+
+        // Iterar sobre las cartas y asignar las imágenes a los JLabel correspondientes
+        for (Map.Entry<Integer, Card> entry : cardMap.entrySet()) {
+            Card card = entry.getValue();
+            String imagePath = card.getImage();
+            System.out.println(imagePath);
+
+            Image icon = loadImage(imagePath);
+            cardLabels[i].setIcon(new ImageIcon(icon));
+            i++;
+        }
+    }
+
+    public boolean hasCard(Card card) {
+
+        boolean hasCard = tableController.hasCard(this.table, card);
+
+        if (hasCard) {
+            tableController.disableCard(this.table, card);
+            this.repaintTable();
+            
+            return tableController.isWinner(this.table);
+        }
+
+        return false;
+
+    }
+
     public Image loadImage(String imagePath) {
         ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+        //ImageIcon icon = new ImageIcon("");
         Image image = icon.getImage();
 
         // Escalar la imagen
@@ -70,7 +125,6 @@ public class TableView extends javax.swing.JPanel {
         int height = 95; // Altura del contenedor
         return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Stack;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +18,4 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
-    // Otros métodos de la clase Deck
 }

@@ -21,11 +21,13 @@ public class Table {
             table.put(card.getNumber(), card); // Colocar la carta en la tabla en la posición i
             System.out.println(i);
         }
+        
+         System.out.println("setupTable size: " + table.size());
     }
     
     // Método para obtener la tabla
     public Map<Integer, Card> getTable() {
-        return table;
+        return this.table;
     }
 
     // Otros métodos de la clase Table
